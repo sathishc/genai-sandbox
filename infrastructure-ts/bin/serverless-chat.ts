@@ -74,11 +74,13 @@ agentApiStack.addDependency(databaseStack);
 const observabilityStack = new ObservabilityStack(app, 'ObservabilityStack', {});
 
 
+const region = process.env.CDK_DEFAULT_REGION // this.region
+const account_id = process.env.CDK_DEFAULT_ACCOUNT //this.account
 const frontendStack = new FrontendStack(app, 'FrontendStack', {
   restApi: agentApiStack.restApi,
   websocketApi: websocketApiStack.webSocketApi,
   cognitoUserPoolId: authStack.cognitoUserPoolId,
-  cognitoDomainPrefix: 'sat-gen-ai' // Cognito domain prefix needs to be unique globally. Please fill in your domain prefix.
+  cognitoDomainPrefix: `gen-ai-${region}-${account_id}` // Cognito domain prefix needs to be unique globally. Please fill in your domain prefix.
 });
 frontendStack.addDependency(agentApiStack);
 
