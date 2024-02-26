@@ -43,7 +43,7 @@ const authStack = new AuthenticationStack(app, 'AuthenticationStack', {});
 
 const databaseStack = new DatabaseStack(app, 'DatabaseStack', {});
 
-const claimsAgentStack = new ClaimsAgentStack(app, 'ClaimsAgentStack', {});
+// const claimsAgentStack = new ClaimsAgentStack(app, 'ClaimsAgentStack', {});
 
 const bankAgentStack = new BankAgentStack(app, 'BankAgentStack', {});
 
