@@ -56,6 +56,7 @@ npm install
 cd resources
 npm install
 cd ..
+cdk bootstrap
 cdk deploy --all
 ```
 Please check the [readme](./infrastructure-ts/README.md) file in the infrastructure directory for more details.
