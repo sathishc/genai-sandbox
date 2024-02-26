@@ -7,6 +7,7 @@ import * as dynamodb from 'aws-cdk-lib/aws-dynamodb';
 import { NodejsFunction, NodejsFunctionProps } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { join } from 'path';
 import * as path from 'path';
+import * as assets from 'aws-cdk-lib/aws-s3-assets'
 
 
 export class BankAgentStack extends cdk.Stack {
@@ -26,25 +27,15 @@ export class BankAgentStack extends cdk.Stack {
     const bank_transactions_bucket_name = agent_name + "-" + suffix
     const csv_file_name = "bank_transactions.csv";
 
-    
-
-    const transaction_s3_bucket = new cdk.aws_s3.Bucket(this, bank_transactions_bucket_name, {
-      bucketName: bank_transactions_bucket_name,
-      versioned: true,
-      removalPolicy: cdk.RemovalPolicy.DESTROY,
-      encryption: cdk.aws_s3.BucketEncryption.S3_MANAGED,
-    })
-
     // create an s3 deployment for the kb files
-    const csv_path = `../assets/dataset/bank`;
-    new cdk.aws_s3_deployment.BucketDeployment(this, `${transaction_s3_bucket}-deployment`, {
-      sources: [cdk.aws_s3_deployment.Source.asset(csv_path)],
-      destinationBucket: transaction_s3_bucket,
+    const csv_path = `../../assets/dataset/bank/${csv_file_name}`;
+    const asset = new assets.Asset(this, 'Transactions', {
+      path: path.join(__dirname, csv_path),
     });
 
-    // create a dynamodb table with the above csv
-
     
+
+    // create a dynamodb table with the above csv
     const bankTable = new dynamodb.Table(this, 'Table', {
       partitionKey: {
         name: 'CustomerID',
@@ -65,8 +56,8 @@ export class BankAgentStack extends cdk.Stack {
           delimiter: ',',
           headerList: ['TransactionID','CustomerID','CustomerDOB','CustGender','CustLocation','CustAccountBalance','TransactionDate','TransactionTime','TransactionAmount (INR)'],
         }),
-        bucket:transaction_s3_bucket,
-        keyPrefix: csv_file_name
+        bucket:asset.bucket,
+        keyPrefix: asset.s3ObjectKey
       },
     });
     
