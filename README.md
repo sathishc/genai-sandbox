@@ -51,8 +51,11 @@ You need to update the code in the [./infrastructure-ts/bin/serverless-chat.ts](
 Switch to the infrastrcutre-ts folder, install the libraries and deploy the stacks
 
 ```
-cd ..\infrastrcutre-ts
+cd ..\infrastructure-ts
 npm install
+cd resources
+npm install
+cd ..
 cdk deploy --all
 ```
 Please check the [readme](./infrastructure-ts/README.md) file in the infrastructure directory for more details.
