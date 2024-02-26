@@ -93,13 +93,14 @@ NagSuppressions.addStackSuppressions(authStack, [
   { id: 'AwsSolutions-IAM5', reason: 'SMS MFA is not enabled on the Userpool.' },
 ]);
 
+/*
 NagSuppressions.addStackSuppressions(claimsAgentStack, [
   { id: 'AwsSolutions-S1', reason: 'Server access logging disabled for sample' },
   { id: 'AwsSolutions-S10', reason: 'Not enforcing SSL for a sample' },
   { id: 'AwsSolutions-IAM4', reason: 'LambdaBasicExecutionRole has access to create and append to any CW log groups. Although this is not ideal, it does not pose a security risk for the sample.' },
   { id: 'AwsSolutions-IAM5', reason: 'SMS MFA is not enabled on the Userpool.' },
   { id: 'AwsSolutions-L1', reason: 'Latest Agent Runtime suppressed for Sample' },
-]);
+]);*/
 
 NagSuppressions.addStackSuppressions(bankAgentStack, [
   { id: 'AwsSolutions-S1', reason: 'Server access logging disabled for sample' },
