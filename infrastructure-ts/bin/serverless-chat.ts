@@ -14,7 +14,6 @@ import { AwsSolutionsChecks, NagSuppressions } from 'cdk-nag';
 import { AgentApiStack } from '../lib/agent-api-stack';
 
 import { ClaimsAgentStack } from '../lib/claims-agent-stack';
-import { BankAgentStack } from '../lib/bank-agent-stack';
 
 /* If you don't specify 'env', this stack will be environment-agnostic.
  * Account/Region-dependent features and context lookups will not work,
@@ -39,15 +38,13 @@ Aspects.of(app).add(new AwsSolutionsChecks({ verbose: true }))
 // DEBUG | INFO | WARN | ERROR
 const LOG_LEVEL = "DEBUG"; 
 
-const authStack = new AuthenticationStack(app, 'AuthenticationStack', {});
+// const authStack = new AuthenticationStack(app, 'AuthenticationStack', {});
 
-const databaseStack = new DatabaseStack(app, 'DatabaseStack', {});
+// const databaseStack = new DatabaseStack(app, 'DatabaseStack', {});
 
-// const claimsAgentStack = new ClaimsAgentStack(app, 'ClaimsAgentStack', {});
+const claimsAgentStack = new ClaimsAgentStack(app, 'ClaimsAgentStack', {});
 
-const bankAgentStack = new BankAgentStack(app, 'BankAgentStack', {});
-
-
+/*
 const websocketApiStack = new WebsocketStack(app, 'WebsocketStack', {
   logLevel: LOG_LEVEL,
   messagesTable: databaseStack.messagesTable,
@@ -83,34 +80,27 @@ const frontendStack = new FrontendStack(app, 'FrontendStack', {
   cognitoDomainPrefix: `gen-ai-${region}-${account_id}` // Cognito domain prefix needs to be unique globally. Please fill in your domain prefix.
 });
 frontendStack.addDependency(agentApiStack);
+*/
 
 // CDK-NAG rule supressions
-
+/*
 NagSuppressions.addStackSuppressions(authStack, [
   { id: 'AwsSolutions-S1', reason: 'Server access logging disabled for sample' },
   { id: 'AwsSolutions-S10', reason: 'Not enforcing SSL for a sample' },
   { id: 'AwsSolutions-IAM4', reason: 'LambdaBasicExecutionRole has access to create and append to any CW log groups. Although this is not ideal, it does not pose a security risk for the sample.' },
   { id: 'AwsSolutions-IAM5', reason: 'SMS MFA is not enabled on the Userpool.' },
-]);
+]);*/
 
-/*
+
 NagSuppressions.addStackSuppressions(claimsAgentStack, [
   { id: 'AwsSolutions-S1', reason: 'Server access logging disabled for sample' },
   { id: 'AwsSolutions-S10', reason: 'Not enforcing SSL for a sample' },
   { id: 'AwsSolutions-IAM4', reason: 'LambdaBasicExecutionRole has access to create and append to any CW log groups. Although this is not ideal, it does not pose a security risk for the sample.' },
   { id: 'AwsSolutions-IAM5', reason: 'SMS MFA is not enabled on the Userpool.' },
   { id: 'AwsSolutions-L1', reason: 'Latest Agent Runtime suppressed for Sample' },
-]);*/
-
-NagSuppressions.addStackSuppressions(bankAgentStack, [
-  { id: 'AwsSolutions-S1', reason: 'Server access logging disabled for sample' },
-  { id: 'AwsSolutions-S10', reason: 'Not enforcing SSL for a sample' },
-  { id: 'AwsSolutions-IAM4', reason: 'LambdaBasicExecutionRole has access to create and append to any CW log groups. Although this is not ideal, it does not pose a security risk for the sample.' },
-  { id: 'AwsSolutions-IAM5', reason: 'SMS MFA is not enabled on the Userpool.' },
-  { id: 'AwsSolutions-L1', reason: 'Latest Agent Runtime suppressed for Sample' },
 ]);
 
-
+/*
 NagSuppressions.addStackSuppressions(agentApiStack, [
   { id: 'AwsSolutions-APIG1', reason: 'Access logging would incur additional cost. Not required for a sample.' },
   { id: 'AwsSolutions-APIG2', reason: 'Request validation in not mandatory in this case. It would improve the resiliency of the API, but not required for a sample.' },
@@ -162,4 +152,4 @@ NagSuppressions.addResourceSuppressionsByPath(
   [
     { id: 'AwsSolutions-L1', reason: 'CDK managed lambda - does not affect production' }
   ]
-);
+);*/
