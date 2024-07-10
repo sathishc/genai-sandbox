@@ -49,7 +49,8 @@ export class ClaimsAgentStack extends cdk.Stack {
     const kb_s3_bucket = new cdk.aws_s3.Bucket(this, kb_name, {
       bucketName: kb_name,
       versioned: true,
-      removalPolicy: cdk.RemovalPolicy.DESTROY
+      // removalPolicy: cdk.RemovalPolicy.DESTROY,
+      enforceSSL: true
     })
 
     // create an s3 deployment for the kb files
@@ -87,12 +88,17 @@ export class ClaimsAgentStack extends cdk.Stack {
       principal: new cdk.aws_iam.ServicePrincipal('bedrock.amazonaws.com'),
     })
 
-    agent.addActionGroup({
+    const schemaString = path.join(__dirname, `../../assets/schema/${schema_name}`)
+
+    const actionGroup = new bedrock.AgentActionGroup(this,'MyActionGroup',{
       actionGroupName: 'insurance-claims',
       description: 'Use these functions to get information about the claims.',
-      actionGroupExecutor: lambda_function,
+      actionGroupExecutor: {
+        lambda: lambda_function,
+      },
       actionGroupState: "ENABLED",
-      apiSchema: bedrock.ApiSchema.fromAsset(path.join(__dirname, `../../assets/schema/${schema_name}`)),
+      apiSchema: bedrock.ApiSchema.fromAsset(schemaString),
     });
+    agent.addActionGroup(actionGroup);
   }
 }
