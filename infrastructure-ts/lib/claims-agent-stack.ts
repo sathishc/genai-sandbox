@@ -100,5 +100,9 @@ export class ClaimsAgentStack extends cdk.Stack {
       apiSchema: bedrock.ApiSchema.fromAsset(schemaString),
     });
     agent.addActionGroup(actionGroup);
+    // output the bedrock agent arn
+    new cdk.CfnOutput(this, 'BedrockAgentArn', {
+      value: agent.agentArn,
+    });  
   }
 }
