@@ -1,15 +1,15 @@
 import type { Schema } from "../../data/resource"
 const { BedrockAgentRuntimeClient, InvokeAgentCommand } = require("@aws-sdk/client-bedrock-agent-runtime"); // CommonJS import
 const client = new BedrockAgentRuntimeClient({region: "us-east-1"});
-// import { env } from '$amplify/env/query-agent'; 
+import { env } from '$amplify/env/query-agent'; 
 
 export const handler: Schema["queryAgent"]["functionHandler"] = async (event) => {
   // arguments typed from `.arguments()`
   const { prompt } = event.arguments
 
   const input = { // InvokeAgentRequest
-    agentId: "SWIEJQLBX2", // required
-    agentAliasId: "PBHV9VNWCB", // required
+    agentId: env.BEDROCK_AGENT_ID, // required
+    agentAliasId: env.BEDROCK_AGENT_ALIAS_ID, // required
     sessionId: "123456", //"STRING_VALUE", // required
     endSession: false,
     enableTrace: true,

@@ -6,5 +6,9 @@ export const queryAgent = defineFunction({
   // optionally specify a path to your handler (defaults to "./handler.ts")
   entry: './handler.ts',
   timeoutSeconds:28,
-  memoryMB: 256
+  memoryMB: 256,
+  environment: {
+    BEDROCK_AGENT_ID: "SWIEJQLBX2",
+    BEDROCK_AGENT_ALIAS_ID: "PBHV9VNWCB",
+  }
 });
