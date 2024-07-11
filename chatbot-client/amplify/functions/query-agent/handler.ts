@@ -7,8 +7,6 @@ export const handler: Schema["queryAgent"]["functionHandler"] = async (event) =>
   // arguments typed from `.arguments()`
   const { prompt } = event.arguments
 
-  console.log("Event details", event.arguments)
-
   const input = { // InvokeAgentRequest
     agentId: "SWIEJQLBX2", // required
     agentAliasId: "PBHV9VNWCB", // required
