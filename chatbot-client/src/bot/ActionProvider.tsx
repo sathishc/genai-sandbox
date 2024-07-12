@@ -1,6 +1,7 @@
 import React from 'react';
 import { generateClient } from 'aws-amplify/data';
 import { type Schema } from '@/amplify/data/resource';
+import Loader from "./Loader.tsx"
 
 const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 
@@ -17,23 +18,32 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   const client = generateClient<Schema>();
 
   const  handleQueryAgent = async (prompt) => {
+    // Add Loading before API call
+    const loading = createChatBotMessage(<Loader />)
+    setState((prev) => ({ ...prev, messages: [...prev.messages, loading], }))
+
     const response = await client.queries.queryAgent({prompt: prompt})
     console.log(response);
+
     const botMessage = createChatBotMessage(response.data);
-    setState((prev) => ({
-      ...prev,
-      messages: [...prev.messages, botMessage],
-    }));
+    setState((prev) => {
+      const newPrevMsg = prev.messages.slice(0, -1)
+      return { ...prev, messages: [...newPrevMsg, botMessage], }
+    });
   };
 
   const  handleQueryModel = async (prompt) => {
+    // Add Loading before API call
+    const loading = createChatBotMessage(<Loader />)
+    setState((prev) => ({ ...prev, messages: [...prev.messages, loading], }))
+
     const response = await client.queries.queryModel({prompt: prompt})
     console.log(response);
     const botMessage = createChatBotMessage(response.data);
-    setState((prev) => ({
-      ...prev,
-      messages: [...prev.messages, botMessage],
-    }));
+    setState((prev) => {
+      const newPrevMsg = prev.messages.slice(0, -1)
+      return { ...prev, messages: [...newPrevMsg, botMessage], }
+    });
   };
 
   return (

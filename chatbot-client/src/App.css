@@ -40,3 +40,14 @@
 .read-the-docs {
   color: #888;
 }
+
+.react-chatbot-kit-chat-container {
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  width: 50% !important;
+}
+
+.react-chatbot-kit-chat-bot-message {
+  width: auto !important;
+}

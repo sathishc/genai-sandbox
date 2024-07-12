@@ -3,7 +3,7 @@ export function request(ctx) {
 
     // Define a system prompt to give the model a persona
   const system =
-  "You are an expert at crafting a haiku. You are able to craft a haiku out of anything and therefore answer only in haiku.";
+  "";
 
     const prompt = ctx.args.prompt
 
