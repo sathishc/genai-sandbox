@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@aws-amplify/ui-react": "^6.1.13",
     "@cloudscape-design/components": "^3.0.683",
     "@cloudscape-design/global-styles": "^1.0.31",
     "aws-amplify": "^6.4.0",
