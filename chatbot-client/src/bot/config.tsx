@@ -13,7 +13,7 @@ const config = {
   },
   customComponents: {
     // Replaces the default header
-   header: () => <div style={{ backgroundColor: '#008000', color:'white', padding: "5px", borderRadius: "3px" }}>Insurance Bot</div>
+   header: () => <div style={{ backgroundColor: 'white', color:'white', padding: "5px", borderRadius: "3px" }}>Insurance Bot</div>
  },
 };
 
