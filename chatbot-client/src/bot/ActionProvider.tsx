@@ -15,7 +15,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     }));
   };
 
-  const client = generateClient<Schema>();
+  const client = generateClient<Schema>({authMode:"userPool"});
 
   const  handleQueryAgent = async (prompt) => {
     // Add Loading before API call

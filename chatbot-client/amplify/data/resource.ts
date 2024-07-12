@@ -6,7 +6,7 @@ const schema = a.schema({
     .query()
     .arguments({ prompt: a.string().required() })
     .returns(a.string())
-    .authorization((allow) => [allow.publicApiKey()])
+    .authorization((allow) => [allow.authenticated()])
     .handler(
       a.handler.function(queryAgent)
     ),
@@ -14,7 +14,7 @@ const schema = a.schema({
     .query()
     .arguments({ prompt: a.string().required() })
     .returns(a.string())
-    .authorization((allow) => [allow.publicApiKey()])
+    .authorization((allow) => [allow.authenticated()])
     .handler(
       a.handler.custom({
         dataSource: "BedrockDataSource",
@@ -28,9 +28,6 @@ export type Schema = ClientSchema<typeof schema>;
 export const data = defineData({
   schema,
   authorizationModes: {
-    defaultAuthorizationMode: "apiKey",
-    apiKeyAuthorizationMode: {
-      expiresInDays: 30,
-    },
+    defaultAuthorizationMode: "userPool"
   },
 });

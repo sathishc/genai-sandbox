@@ -44,21 +44,6 @@ const bedrockAgentAccessPolicy = new PolicyStatement({
 });
 queryAgentLambda.addToRolePolicy(bedrockAgentAccessPolicy)
 
-/*
-const agentDataSource = backend.data.addHttpDataSource(
-  "AgentDataSource",
-  "https://bedrock-agent-runtime.us-east-1.amazonaws.com",
-  {
-    authorizationConfig: {
-      signingRegion: Stack.of(backend.data).region,
-      signingServiceName: "bedrock",
-    },
-  }
-);
-
-agentDataSource.grantPrincipal.addToPrincipalPolicy(
-  bedrockAgentAccessPolicy)
-);*/
 
 backend.data.resources.cfnResources.cfnGraphqlApi.environmentVariables = {
   MODEL_ID
