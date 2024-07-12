@@ -2,10 +2,12 @@ import React from 'react';
 
 const MessageParser = ({ children, actions }) => {
   const parse = (message) => {
-    if (message.toLowerCase().includes('hello') || message.toLowerCase().includes('hi')) {
+    if (message.toLowerCase() === 'hello' || message.toLowerCase() === 'hi') {
       actions.handleHello();
-    } else {
+    } else if(message.lastIndexOf('/agent ',0) == 0) {
       actions.handleQueryAgent(message);
+    } else {
+      actions.handleQueryModel(message);
     }
   };
 

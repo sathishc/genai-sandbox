@@ -17,13 +17,19 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   const client = generateClient<Schema>();
 
   const  handleQueryAgent = async (prompt) => {
-
     const response = await client.queries.queryAgent({prompt: prompt})
-
     console.log(response);
-
     const botMessage = createChatBotMessage(response.data);
+    setState((prev) => ({
+      ...prev,
+      messages: [...prev.messages, botMessage],
+    }));
+  };
 
+  const  handleQueryModel = async (prompt) => {
+    const response = await client.queries.queryModel({prompt: prompt})
+    console.log(response);
+    const botMessage = createChatBotMessage(response.data);
     setState((prev) => ({
       ...prev,
       messages: [...prev.messages, botMessage],
@@ -36,7 +42,8 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
         return React.cloneElement(child, {
           actions: {
             handleHello,
-            handleQueryAgent
+            handleQueryAgent,
+            handleQueryModel,
           },
         });
       })}
