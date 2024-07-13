@@ -1,14 +1,22 @@
 import React from 'react';
 
 const MessageParser = ({ children, actions }) => {
-  const parse = (message) => {
+  const parse = async (message) => {
+
+    // first save the message fro user to persistent db
+    actions.saveMessage(message, "user");
+
+    var response = ""
+    // handle the message
     if (message.toLowerCase() === 'hello' || message.toLowerCase() === 'hi') {
-      actions.handleHello();
+      response = await actions.handleHello();
     } else if(message.lastIndexOf('/agent ',0) == 0) {
-      actions.handleQueryAgent(message);
+      response = await actions.handleQueryAgent(message);
     } else {
-      actions.handleQueryModel(message);
+      response = await actions.handleQueryModel(message);
     }
+    // save the response from the bot
+    actions.saveMessage(response, "bot");
   };
 
   return (
