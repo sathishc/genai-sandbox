@@ -42,7 +42,7 @@ function App() {
               console.log(item);
               if (item.detail.id === "signout") {
                 console.log("signing out", user);
-                //signOut();
+                signOut();
               }
             }
           }
