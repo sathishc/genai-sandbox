@@ -25,7 +25,7 @@ For the sake of this demo, **not all security features are enabled** to save cos
 Switch to the infrastrcutre-ts folder, install the libraries and deploy the stacks
 
 ```
-cd ..\infrastructure-ts
+cd infrastructure-ts
 npm install
 cdk bootstrap
 cdk deploy 
@@ -53,7 +53,7 @@ Please check the [readme](./infrastructure-ts/README.md) file in the infrastruct
 ### Cleanup
 Run the following command in the relevant infrastructure directory to delete the cloudformation stacks:
 ```bash
-    cdk destroy --all
+    cdk destroy
 ```
 
 ## Found an issue? Anything to add?
