@@ -1,5 +1,5 @@
-# Amazon Bedrock Agent application using ApiGateway Websockets
-This project lets you provision a ready-to-use fully serverless Amazon Bedrock Agent chatbot application using Amazon ApiGateway Websockets. The infrastructure code is using the [AWS Cloud Development Kit(AWS CDK)](https://aws.amazon.com/cdk/) and implemented in both Typescript. The frontend is written using [Angular 17](https://angular.io/).
+# Chatbot application using Amazon Bedrock Agents and Amplify Gen2
+This project lets you provision a ready-to-use fully serverless chatbot application using Amazon Bedrock Agents and Amplify Gen2. The infrastructure code is using the [AWS Cloud Development Kit(AWS CDK)](https://aws.amazon.com/cdk/) and implemented in both Typescript. The frontend is written using [React + Vite + Amplify](https://github.com/sathishc/genai-sandbox/tree/main/chatbot-client).
 
 ![](assets/chat_UI.png)
 
