@@ -62,7 +62,3 @@ See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more inform
 ## License
 
 This library is licensed under the MIT-0 License. See the LICENSE file.
-
-## Credits
-
-This source base is forked from https://github.com/aws-samples/websocket-chat-application
