@@ -42,7 +42,7 @@ export class ClaimsAgentStack extends cdk.Stack {
 
     // create a Bedrock knowledgebase
     const kb = new bedrock.KnowledgeBase(this, 'KnowledgeBase', {
-      embeddingsModel: bedrock.BedrockFoundationModel.TITAN_EMBED_TEXT_V1,
+      embeddingsModel: bedrock.BedrockFoundationModel.TITAN_EMBED_TEXT_V2_1024,
       instruction: 'KB that contains information about documents requirements for insurance claims',
     });
 
@@ -72,7 +72,7 @@ export class ClaimsAgentStack extends cdk.Stack {
     });
 
     const agent = new bedrock.Agent(this, 'Agent', {
-      foundationModel: bedrock.BedrockFoundationModel.ANTHROPIC_CLAUDE_INSTANT_V1_2,
+      foundationModel: bedrock.BedrockFoundationModel.ANTHROPIC_CLAUDE_SONNET_V1_0,
       instruction: `
         You are an agent that can handle various tasks related to insurance claims, including looking up claim 
         details, finding what paperwork is outstanding, and sending reminders. Only send reminders if you have been 
@@ -101,8 +101,24 @@ export class ClaimsAgentStack extends cdk.Stack {
     });
     agent.addActionGroup(actionGroup);
     // output the bedrock agent arn
-    new cdk.CfnOutput(this, 'BedrockAgentArn', {
-      value: agent.agentArn,
+    new cdk.CfnOutput(this, 'BedrockAgentId', {
+      value: agent.agentId,
+      exportName: "LoanAgent-AgentId"
     });  
+
+    if(agent.aliasId){
+      new cdk.CfnOutput(this, 'BedrockAgentAliasId', {
+        value: agent.aliasId,
+        exportName: "LoanAgent-AgentAliasId"
+      });
+    }
+
+    // output the agent id and agent alias id
+    
   }
+
+  
+  
+
+  
 }
