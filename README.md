@@ -20,6 +20,14 @@ For the sake of this demo, **not all security features are enabled** to save cos
 
 ## Getting started
 
+### Pre-Requisites
+Before you start deployment, ensure that you have enabled Amazon Bedrock Models - Titan Embeddings V2 and Anthropic Claude Sonnet in the region where the stacks will be deployed. You can do this by logging into the AWS Console and using the "request model access" feature.
+
+Also ensure that the region is correctly setup in the terminal environment where you are running the commands by executing
+```
+export AWS_REGION=<REGION> 
+```
+
 ### Deploy the CDK stack
 
 Switch to the infrastructure-ts folder, install the libraries and deploy the stacks
