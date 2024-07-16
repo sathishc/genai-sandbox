@@ -60,6 +60,11 @@ Please check the [readme](./infrastructure-ts/README.md) file in the infrastruct
     npm run dev
 ```
 
+Open the application in the browser and signup using your email. In the chatbot, type in your queries to see responses from the backend. To test the agent which you have deployed, start your queries with '/agent' for example you can query using
+```
+/agent show me my claims
+```
+
 ### Cleanup
 Run the following command in the relevant infrastructure directory to delete the cloudformation stacks:
 ```bash
