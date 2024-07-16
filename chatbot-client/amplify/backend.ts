@@ -3,7 +3,7 @@ import { auth } from "./auth/resource";
 import { data } from "./data/resource";
 import { queryAgent } from './functions/query-agent/resource';
 import { Effect, PolicyStatement } from "aws-cdk-lib/aws-iam";
-import { Stack } from "aws-cdk-lib";
+import { Stack, Fn } from "aws-cdk-lib";
 
 export const backend = defineBackend({
   auth,
@@ -15,7 +15,7 @@ const MODEL_ID = "anthropic.claude-3-sonnet-20240229-v1:0";
 
 const bedrockDataSource = backend.data.addHttpDataSource(
   "BedrockDataSource",
-  "https://bedrock-runtime.us-east-1.amazonaws.com",
+  `https://bedrock-runtime.${Stack.of(backend.data).region}.amazonaws.com`,
   {
     authorizationConfig: {
       signingRegion: Stack.of(backend.data).region,
@@ -39,7 +39,7 @@ const bedrockAgentAccessPolicy = new PolicyStatement({
   effect: Effect.ALLOW,
   actions: ["bedrock:InvokeAgent"],
   resources: [
-    `arn:aws:bedrock:us-east-1:332009426877:agent-alias/SWIEJQLBX2/*`,
+    `arn:aws:bedrock:${Stack.of(backend.data).region}:${Stack.of(backend.data).account}:agent-alias/${Fn.importValue('LoanAgent-AgentAliasId')}/*`,
   ],
 });
 queryAgentLambda.addToRolePolicy(bedrockAgentAccessPolicy)
