@@ -22,7 +22,7 @@ For the sake of this demo, **not all security features are enabled** to save cos
 
 ### Deploy the CDK stack
 
-Switch to the infrastrcutre-ts folder, install the libraries and deploy the stacks
+Switch to the infrastructure-ts folder, install the libraries and deploy the stacks
 
 ```
 cd infrastructure-ts
@@ -35,7 +35,7 @@ Please check the [readme](./infrastructure-ts/README.md) file in the infrastruct
 ### Building the frontend and middleware
 - Change directory to where UI code lives.
 ```bash
-    cd chat-client
+    cd chatbot-client
 ```
 - Restore NPM packages for the project
 ```bash
