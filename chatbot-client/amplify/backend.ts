@@ -39,7 +39,7 @@ const bedrockAgentAccessPolicy = new PolicyStatement({
   effect: Effect.ALLOW,
   actions: ["bedrock:InvokeAgent"],
   resources: [
-    `arn:aws:bedrock:${Stack.of(backend.data).region}:${Stack.of(backend.data).account}:agent-alias/${Fn.importValue('LoanAgent-AgentAliasId')}/*`,
+    `arn:aws:bedrock:${Stack.of(backend.data).region}:${Stack.of(backend.data).account}:agent-alias/${Fn.importValue('LoanAgent-AgentId')}/${Fn.importValue('LoanAgent-AgentAliasId')}`,
   ],
 });
 queryAgentLambda.addToRolePolicy(bedrockAgentAccessPolicy)
