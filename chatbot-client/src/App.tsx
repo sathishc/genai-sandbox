@@ -1,8 +1,8 @@
 import './App.css'
 import Chatbot from 'react-chatbot-kit'
-import config from './bot/config.tsx';
-import MessageParser from './bot/MessageParser.tsx';
-import ActionProvider from './bot/ActionProvider.js';
+import config from './bot/config.jsx';
+import MessageParser from './bot/MessageParser.jsx';
+import ActionProvider from './bot/ActionProvider.jsx';
 import 'react-chatbot-kit/build/main.css'
 
 import "@cloudscape-design/global-styles/index.css"
@@ -42,7 +42,8 @@ function App() {
               console.log(item);
               if (item.detail.id === "signout") {
                 console.log("signing out", user);
-                signOut();
+                if(signOut)
+                  signOut();
               }
             }
           }

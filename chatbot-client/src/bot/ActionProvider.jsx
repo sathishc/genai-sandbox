@@ -1,14 +1,20 @@
 import React from 'react';
 import { generateClient } from 'aws-amplify/data';
-import { type Schema } from '@/amplify/data/resource';
-import Loader from "./Loader.tsx"
+// import { Schema } from '../../amplify/data/resource.ts';
+
+/**
+ * @type {import('aws-amplify/data').Client<import('../amplify/data/resource').Schema>}
+ */
+const client = generateClient({authMode:"userPool"});
+
+import Loader from "./Loader.jsx"
 
 import { useAuthenticator } from '@aws-amplify/ui-react';
 
 const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 
   const { user } = useAuthenticator((context) => [context.user]);
-  const client = generateClient<Schema>({authMode:"userPool"});
+  // const client = generateClient<Schema>({authMode:"userPool"});
 
   const loadMessages = () => {
     client.models.Message.list().then((messages) => {
