@@ -22,6 +22,14 @@ Also ensure that the region is correctly setup in the terminal environment where
 export AWS_REGION=<REGION> 
 ```
 
+### Using AWS Cloud9
+Above dependencies are pre-installed when using an AWS Cloud9 environment and hence can be skipped. When using cloud9 remember to resize your ebs volume though by running the following commands from root folder
+
+```
+chmod +x utils/cloud9-resize.sh
+./cloud9-resize.sh 100
+```
+
 ## Security considerations
 For the sake of this demo, **not all security features are enabled** to save cost and effort of setting up a working PoC. 
 
