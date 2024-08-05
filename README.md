@@ -27,7 +27,7 @@ Above dependencies are pre-installed when using an AWS Cloud9 environment and he
 
 ```
 chmod +x utils/cloud9-resize.sh
-./cloud9-resize.sh 100
+./utils/cloud9-resize.sh 100
 ```
 
 ## Security considerations
