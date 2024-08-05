@@ -15,7 +15,7 @@ This project lets you provision a ready-to-use fully serverless chatbot applicat
 - [docker](https://docs.docker.com/get-docker/) installed and is up and running locally (required for the lambda function builds).
 - [node-js 18](https://nodejs.org/en/download) installed. If using nvm, run `nvm use 18`
 
-Before you start deployment, ensure that you have enabled Amazon Bedrock Models - Titan Embeddings V2 and Anthropic Claude Sonnet in the region where the stacks will be deployed. You can do this by logging into the AWS Console and using the "request model access" feature.
+Before you start deployment, ensure that you have enabled Amazon Bedrock Models - Titan Embeddings V2 and Anthropic Claude Sonnet in the region where the stacks will be deployed. You can do this by logging into the AWS Console and using the [request model access](https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html) feature.
 
 Also ensure that the region is correctly setup in the terminal environment where you are running the commands by executing
 ```
